@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.alqiran.noteapp.feature_node.data.data_source.NoteDatabase
 import com.alqiran.noteapp.feature_node.data.repository.NoteRepositoryImpl
 import com.alqiran.noteapp.feature_node.domain.repository.NoteRepository
+import com.alqiran.noteapp.feature_node.domain.use_case.AddNoteUseCase
 import com.alqiran.noteapp.feature_node.domain.use_case.DeleteNoteUseCase
 import com.alqiran.noteapp.feature_node.domain.use_case.GetNotesUseCase
 import com.alqiran.noteapp.feature_node.domain.use_case.NoteUseCases
@@ -39,7 +40,8 @@ object NoteModule {
     fun provideNoteUseCases(repository: NoteRepository): NoteUseCases {
         return NoteUseCases(
             getNotesUseCase = GetNotesUseCase(repository),
-            deleteNoteUseCase = DeleteNoteUseCase(repository)
+            deleteNoteUseCase = DeleteNoteUseCase(repository),
+            addNoteUseCase = AddNoteUseCase(repository)
         )
     }
 }
