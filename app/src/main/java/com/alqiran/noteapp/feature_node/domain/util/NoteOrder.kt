@@ -9,7 +9,6 @@ sealed class NoteOrder(val orderType: OrderType) {
     fun copy(orderType: OrderType): NoteOrder {
         return when(this) {
             is Color -> NoteOrder.Color(orderType)
-
             is Date -> NoteOrder.Date(orderType)
             is Title -> NoteOrder.Title(orderType)
         }

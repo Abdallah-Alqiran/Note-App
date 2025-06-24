@@ -7,6 +7,7 @@ import com.alqiran.noteapp.feature_node.data.repository.NoteRepositoryImpl
 import com.alqiran.noteapp.feature_node.domain.repository.NoteRepository
 import com.alqiran.noteapp.feature_node.domain.use_case.AddNoteUseCase
 import com.alqiran.noteapp.feature_node.domain.use_case.DeleteNoteUseCase
+import com.alqiran.noteapp.feature_node.domain.use_case.GetNoteUseCase
 import com.alqiran.noteapp.feature_node.domain.use_case.GetNotesUseCase
 import com.alqiran.noteapp.feature_node.domain.use_case.NoteUseCases
 import dagger.Module
@@ -41,7 +42,8 @@ object NoteModule {
         return NoteUseCases(
             getNotesUseCase = GetNotesUseCase(repository),
             deleteNoteUseCase = DeleteNoteUseCase(repository),
-            addNoteUseCase = AddNoteUseCase(repository)
+            addNoteUseCase = AddNoteUseCase(repository),
+            getNoteUseCase = GetNoteUseCase(repository)
         )
     }
 }
