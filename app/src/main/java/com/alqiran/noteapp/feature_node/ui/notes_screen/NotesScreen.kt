@@ -41,6 +41,7 @@ import com.alqiran.noteapp.feature_node.ui.notes_screen.components.NoteItem
 import com.alqiran.noteapp.feature_node.ui.notes_screen.components.OrderSection
 import com.alqiran.noteapp.feature_node.ui.notes_screen.viewModel.NotesEvent
 import com.alqiran.noteapp.feature_node.ui.notes_screen.viewModel.NotesViewModel
+import com.alqiran.noteapp.feature_node.ui.util.Screen
 import kotlinx.coroutines.launch
 
 
@@ -53,7 +54,9 @@ fun NotesScreen(navController: NavController, viewModel: NotesViewModel = hiltVi
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { /*TODO*/ },
+                onClick = {
+                    navController.navigate(Screen.AddEditNoteScreen.route)
+                },
                 modifier = Modifier.background(MaterialTheme.colorScheme.primary),
             ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Add Note")
@@ -97,13 +100,17 @@ fun NotesScreen(navController: NavController, viewModel: NotesViewModel = hiltVi
             Spacer(modifier = Modifier.height(16.dp))
 
             LazyColumn(
-                modifier = Modifier.height(16.dp)
+                modifier = Modifier.fillMaxSize()
             ) {
                 items(state.notes) { note ->
                     NoteItem(
                         note = note, modifier = Modifier
                             .fillMaxWidth()
-                            .clickable { }) {
+                            .clickable {
+                                navController.navigate(
+                                    Screen.AddEditNoteScreen.route + "?noteId=${note.id}&noteColor=${note.color}"
+                                )
+                            }) {
                         viewModel.onEvent(NotesEvent.DeleteNote(note))
                         scope.launch {
                             val result = snackBarHostState.showSnackbar(
