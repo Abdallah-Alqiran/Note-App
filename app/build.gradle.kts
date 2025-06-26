@@ -66,12 +66,37 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     testImplementation(libs.junit)
+    testImplementation(libs.junit.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // For Testing //
+
+    // Truth
+    testImplementation(libs.truth)
+    androidTestImplementation(libs.truth)
+
+
+    // Test
+    testImplementation(kotlin("test"))
+
+    // Kotlin Coroutines Testing
+    testImplementation(libs.kotlinx.coroutines.test)
+
+    androidTestImplementation(libs.androidx.core)
+    androidTestImplementation(libs.androidx.runner)
+    androidTestImplementation(libs.androidx.rules)
+
+    testImplementation(libs.androidx.core.testing)
+    androidTestImplementation(libs.core.testing)
+
+    // testing hilt
+    androidTestImplementation(libs.hilt.android.testing)
+
 
     // navigation
     implementation(libs.androidx.navigation.compose)
