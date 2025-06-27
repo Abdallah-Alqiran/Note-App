@@ -21,13 +21,13 @@ fun OrderSection(
     Column(
         modifier = modifier
     ) {
-        Row (
+        Row(
             modifier = Modifier.fillMaxWidth()
-        ){
+        ) {
             DefaultRadioButton(
                 text = "Title",
-                checked = noteOrder is NoteOrder.Title,
-                onCheck = {
+                selected = noteOrder is NoteOrder.Title,
+                onSelect = {
                     onOrderChange(NoteOrder.Title(noteOrder.orderType))
                 })
 
@@ -35,8 +35,8 @@ fun OrderSection(
 
             DefaultRadioButton(
                 text = "Date",
-                checked = noteOrder is NoteOrder.Date,
-                onCheck = {
+                selected = noteOrder is NoteOrder.Date,
+                onSelect = {
                     onOrderChange(NoteOrder.Date(noteOrder.orderType))
                 })
 
@@ -44,32 +44,31 @@ fun OrderSection(
 
             DefaultRadioButton(
                 text = "Color",
-                checked = noteOrder is NoteOrder.Color,
-                onCheck = {
+                selected = noteOrder is NoteOrder.Color,
+                onSelect = {
                     onOrderChange(NoteOrder.Color(noteOrder.orderType))
                 })
-            Spacer(modifier = Modifier.height(16.dp))
+        }
+        Spacer(modifier = Modifier.height(16.dp))
 
-            Row (
-                modifier = Modifier.fillMaxWidth()
-            ){
-                DefaultRadioButton(
-                    text = "Ascending",
-                    checked = noteOrder.orderType is OrderType.Ascending,
-                    onCheck = {
-                        onOrderChange(noteOrder.copy(orderType = OrderType.Ascending))
-                    })
+        Row(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            DefaultRadioButton(
+                text = "Ascending",
+                selected = noteOrder.orderType is OrderType.Ascending,
+                onSelect = {
+                    onOrderChange(noteOrder.copy(orderType = OrderType.Ascending))
+                })
 
-                Spacer(modifier = Modifier.width(8.dp))
+            Spacer(modifier = Modifier.width(8.dp))
 
-                DefaultRadioButton(
-                    text = "Descending",
-                    checked = noteOrder.orderType is OrderType.Descending,
-                    onCheck = {
-                        onOrderChange(noteOrder.copy(orderType = OrderType.Descending))
-                    })
-            }
-
+            DefaultRadioButton(
+                text = "Descending",
+                selected = noteOrder.orderType is OrderType.Descending,
+                onSelect = {
+                    onOrderChange(noteOrder.copy(orderType = OrderType.Descending))
+                })
         }
     }
 }
