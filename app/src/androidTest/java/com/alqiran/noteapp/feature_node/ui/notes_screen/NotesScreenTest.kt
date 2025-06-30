@@ -1,7 +1,10 @@
 package com.alqiran.noteapp.feature_node.ui.notes_screen
 
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.performClick
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -45,7 +48,10 @@ class NotesScreenTest {
 
     @Test
     fun clickToggleOrderSection_isVisible() {
-        composeRule.onNodeWithTag(TestTags.ORDER_SECTION)
+        composeRule.onNodeWithTag(TestTags.ORDER_SECTION).assertDoesNotExist()
+        composeRule.onNodeWithContentDescription("Sort Section").performClick()
+        composeRule.onNodeWithTag(TestTags.ORDER_SECTION).assertIsDisplayed()
+
     }
 
 }

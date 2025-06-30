@@ -1,5 +1,6 @@
 package com.alqiran.noteapp.feature_node.ui.notes_screen
 
+import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -59,12 +60,11 @@ fun NotesScreen(navController: NavController, viewModel: NotesViewModel = hiltVi
                 onClick = {
                     navController.navigate(Screen.AddEditNoteScreen.route)
                 },
-                modifier = Modifier.background(MaterialTheme.colorScheme.primary),
             ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Add Note")
             }
         },
-        snackbarHost = { SnackbarHost(hostState = snackBarHostState)}
+        snackbarHost = { SnackbarHost(hostState = snackBarHostState) }
     ) { paddingValue ->
         Column(
             modifier = Modifier
@@ -72,11 +72,11 @@ fun NotesScreen(navController: NavController, viewModel: NotesViewModel = hiltVi
                 .padding(paddingValue)
         ) {
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = "Your Note", style = MaterialTheme.typography.bodyMedium)
+                Text(text = "Your Note", style = MaterialTheme.typography.titleLarge)
                 IconButton(onClick = { viewModel.onEvent(NotesEvent.ToggleOrderSection) }) {
                     Icon(
                         imageVector = Icons.Default.KeyboardArrowDown,
@@ -92,7 +92,7 @@ fun NotesScreen(navController: NavController, viewModel: NotesViewModel = hiltVi
                 OrderSection(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 16.dp)
+                        .padding(vertical = 8.dp)
                         .testTag(TestTags.ORDER_SECTION),
                     noteOrder = state.noteOrder,
                     onOrderChange = {
@@ -100,7 +100,7 @@ fun NotesScreen(navController: NavController, viewModel: NotesViewModel = hiltVi
                     }
                 )
             }
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(8.dp))
 
             LazyColumn(
                 modifier = Modifier.fillMaxSize()
@@ -110,6 +110,7 @@ fun NotesScreen(navController: NavController, viewModel: NotesViewModel = hiltVi
                         note = note, modifier = Modifier
                             .fillMaxWidth()
                             .clickable {
+                                Log.d("Al-qiran", "note id ${note.id}")
                                 navController.navigate(
                                     Screen.AddEditNoteScreen.route + "?noteId=${note.id}&noteColor=${note.color}"
                                 )
@@ -125,7 +126,7 @@ fun NotesScreen(navController: NavController, viewModel: NotesViewModel = hiltVi
                             }
                         }
                     }
-                    
+
                     Spacer(modifier = Modifier.height(16.dp))
                 }
             }

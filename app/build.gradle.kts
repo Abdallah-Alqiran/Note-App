@@ -67,6 +67,8 @@ dependencies {
     implementation(libs.androidx.material3)
     testImplementation(libs.junit)
     testImplementation(libs.junit.junit)
+    androidTestImplementation(libs.junit)
+    androidTestImplementation(libs.junit.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
@@ -96,7 +98,10 @@ dependencies {
 
     // testing hilt
     androidTestImplementation(libs.hilt.android.testing)
+    kspAndroidTest("com.google.dagger:hilt-android-compiler:2.48")
 
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test:runner:1.5.2")
 
     // navigation
     implementation(libs.androidx.navigation.compose)

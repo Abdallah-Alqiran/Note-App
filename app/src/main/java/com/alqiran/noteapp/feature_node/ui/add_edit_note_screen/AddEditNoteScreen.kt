@@ -1,5 +1,6 @@
 package com.alqiran.noteapp.feature_node.ui.add_edit_note_screen
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.tween
@@ -50,7 +51,6 @@ fun AddEditNoteScreen(
     noteColor: Int,
     viewModel: AddEditNoteViewModel = hiltViewModel()
 ) {
-
     val titleState = viewModel.noteTitle.value
     val contentState = viewModel.noteContent.value
 
@@ -81,7 +81,6 @@ fun AddEditNoteScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { viewModel.onEvent(AddEditNoteEvent.SaveNote) },
-                modifier = Modifier.background(MaterialTheme.colorScheme.primary),
             ) {
                 Icon(imageVector = Icons.Default.Done, contentDescription = "Save Note")
             }
@@ -116,6 +115,7 @@ fun AddEditNoteScreen(
                                 },
                                 shape = CircleShape
                             )
+                            .background(color)
                             .clickable {
                                 scope.launch {
                                     noteBackgroundAnimatable.animateTo(

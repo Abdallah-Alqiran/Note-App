@@ -1,5 +1,6 @@
 package com.alqiran.noteapp.feature_node.ui.add_edit_note_screen.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.BasicTextField
@@ -22,6 +23,7 @@ fun TransparentHintTextField(
     singleLine: Boolean = false,
     onFocusChange: (FocusState) -> Unit
 ) {
+    Log.d("Al-qiran", text)
     Box(modifier = modifier) {
         BasicTextField(
             value = text,

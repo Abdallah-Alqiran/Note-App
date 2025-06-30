@@ -1,5 +1,6 @@
 package com.alqiran.noteapp.feature_node.ui.add_edit_note_screen.viewModel
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -24,6 +25,7 @@ class AddEditNoteViewModel @Inject constructor(
 
     init {
         savedStateHandle.get<Int>("noteId")?.let { noteId ->
+            Log.d("Al-qiran", "From ViewModel: $noteId")
             if (noteId != -1) {
                 viewModelScope.launch {
                     noteUseCases.getNoteUseCase(noteId)?.also { note ->
